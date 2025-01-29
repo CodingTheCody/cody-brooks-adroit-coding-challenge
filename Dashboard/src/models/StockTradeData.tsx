@@ -1,7 +1,7 @@
 export interface StockTradeData {
-    id: string;
-    timeStamp: string;
+    id?: string;
+    timestamp: string;
     size: number;
     price: number;
-    symbol: string;
+    symbol?: string;
 }

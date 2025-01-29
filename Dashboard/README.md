@@ -1,3 +1,8 @@
+# Notes from Cody Brooks
+I wasn't able to get the same port working for the API and for the sake of time I just used 
+the default port it was using. This port is 44370. So for example the API call is made
+to the url https://localhost:44370/api/trades
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

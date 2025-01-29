@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Text.Json;
 using Trade.Api.Models;
 
 public class RandomTradesQueryable : ITradesQueryable
@@ -11,6 +12,7 @@ public class RandomTradesQueryable : ITradesQueryable
     {
         _random = new Random(seed);
         _cachedTrades = new List<StockTrade>();
+        Initialize();
     }
 
     public void Initialize()
@@ -67,6 +69,10 @@ public class RandomTradesQueryable : ITradesQueryable
         }
 
         _cachedTrades = _cachedTrades.OrderBy(t => t.Timestamp).ToList();
+        
+        var jsonString = JsonSerializer.Serialize(_cachedTrades, new JsonSerializerOptions { WriteIndented = true });
+        if (File.Exists("cached_trades.json")) File.Delete("cached_trades.json");
+        File.WriteAllText("cached_trades.json", jsonString);
     }
 
     private int WeightedRandom(double[] weights)
