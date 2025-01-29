@@ -62,17 +62,13 @@ public class RandomTradesQueryable : ITradesQueryable
             {
                 Id = i + 1,
                 Timestamp = timestamp,
-                Size = size, 
+                Size = size,
                 Price = Math.Round(price, 2),
                 Symbol = symbol
             });
         }
 
         _cachedTrades = _cachedTrades.OrderBy(t => t.Timestamp).ToList();
-        
-        var jsonString = JsonSerializer.Serialize(_cachedTrades, new JsonSerializerOptions { WriteIndented = true });
-        if (File.Exists("cached_trades.json")) File.Delete("cached_trades.json");
-        File.WriteAllText("cached_trades.json", jsonString);
     }
 
     private int WeightedRandom(double[] weights)
